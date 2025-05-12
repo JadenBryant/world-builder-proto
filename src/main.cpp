@@ -1,21 +1,31 @@
+#include <windows.h>
 #include <SFML/Graphics.hpp>
+#include "constants.h"
+#include "classes/GameWindow.h"
 
-int main()
-{
-    auto window = sf::RenderWindow(sf::VideoMode({1920u, 1080u}), "CMake SFML Project");
+sf::RenderWindow& initGameWindow() {
+    GameWindow::init();
+
+    auto& window = GameWindow::getWindow();
+    window.setTitle(GAME_TITLE);
     window.setFramerateLimit(144);
+    ::ShowWindow(window.getNativeHandle(), SW_MAXIMIZE);
+    // TODO: window.setIcon();
 
-    while (window.isOpen())
-    {
-        while (const std::optional event = window.pollEvent())
-        {
-            if (event->is<sf::Event::Closed>())
-            {
+    return window;
+}
+
+int main() {
+    auto &window = initGameWindow();
+
+    while (window.isOpen()) {
+        while (const std::optional event = window.pollEvent()) {
+            if (event->is<sf::Event::Closed>()) {
                 window.close();
             }
         }
 
-        window.clear();
+        window.clear(sf::Color::White);
         window.display();
     }
 }

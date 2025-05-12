@@ -12,6 +12,12 @@ FetchContent_Declare(SFML
     SYSTEM)
 FetchContent_MakeAvailable(SFML)
 
-add_executable(main src/main.cpp)
+add_executable(main src/main.cpp
+        src/classes/GameWindow.h
+        src/constants.h
+        src/classes/UIBase.cpp
+        src/classes/UIBase.h
+        src/classes/Object.cpp
+        src/classes/Object.h)
 target_compile_features(main PRIVATE cxx_std_17)
 target_link_libraries(main PRIVATE SFML::Graphics)
