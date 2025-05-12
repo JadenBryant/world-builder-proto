@@ -4,7 +4,7 @@
 
 #pragma once
 #include <iostream>
-#include "constants.h"
+#include "../constants.h"
 #include "SFML/Graphics/RenderWindow.hpp"
 
 #define WINDOW_WIDTH 800
